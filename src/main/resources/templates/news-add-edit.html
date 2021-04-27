@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактор новостей</title>
+    <div th:replace="~{commons :: head}"></div>
+    <script src="/js/tinymce.min.js"></script>
+<body>
+<div th:replace="~{commons :: nav}"></div>
+
+<section class="newsItem-addEdit" id="newsItem-addEdit">
+    <div class="container">
+        <form action="/news/create" method="POST" th:object="${entity}">
+            <div class="row">
+                <div class="col text-center">
+                    <h3 class="text-center">Создание / Редактирование новости</h3>
+                </div>
+            </div>
+            <div class="row mainContainer newsBetween">
+                <div class="col-md-12">
+                    <div class="newsItemField">
+                        <label>Заголовок</label>
+                        <input type="text" name="title" required th:field="*{name}" class="form-control">
+                    </div>
+                    <div class="newsItemField">
+                        <label>Дата создания</label>
+                        <input type="date" name="creatingDate" required th:field="*{dates}" class="form-control">
+                    </div>
+                    <div class="newsItemField">
+                        <label>Ссылка на изображение</label>
+                        <input type="text" name="image" required th:field="*{image}" class="form-control">
+                    </div>
+                    <div class="newsItemField">
+                        <label>Текст</label>
+                        <div th:replace="~{commons :: richTextEditor}"></div>
+                    </div>
+                    <input type="hidden" name="id" th:value="${entity.id}">
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+<div th:replace="~{commons :: footer}"></div>
+</body>
+</html>

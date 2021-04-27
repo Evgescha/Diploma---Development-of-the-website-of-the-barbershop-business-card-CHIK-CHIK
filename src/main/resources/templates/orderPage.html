@@ -1,0 +1,77 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Бронирование онлайн</title>
+    <div th:replace="~{commons :: head}"></div>
+</head>
+
+<body>
+<div th:replace="~{commons :: nav}"></div>
+
+
+<div id="somedialog" class="dialog my-5" style="padding: 40px 0;">
+    <div class="dialog__content">
+        <div id="" class="my-5">
+            <h3>Бронирование онлайн</h3>
+            <form class="book_online" id="bookingForm" action="/order/bookNow" method="post">
+                <div class="row">
+                    <div class="">
+                        <label>ФИО <span>*</span></label></br>
+                        <label th:text="${entity.fio}">Name</label>
+                    </div>
+                    <div class="">
+                        <div class="datepicker-input col-md-7">
+                            <label>На дату <span>*</span></label>
+                            <input type="date" id="bookingDate" name="dateTo" required="required"/>
+                        </div>
+                        <div class="time-picker col-md-5">
+                            <label>На время <span>*</span></label>
+                            <select class="selectbox-input" id="reservationtime" name="timeTo" required="required"/>
+                            <option value="8:00:00">8:00</option>
+                            <option value="8:30:00">8:30</option>
+                            <option value="9:00:00">9:00</option>
+                            <option value="9:30:00">9:30</option>
+                            <option value="10:00:00">10:00</option>
+                            <option value="10:30:00">10:30</option>
+                            <option value="11:00:00">11:00</option>
+                            <option value="11:30:00">11:30</option>
+                            <option value="12:00:00">12:00</option>
+                            <option value="12:30:00">12:30</option>
+                            <option value="13:00:00">13:00</option>
+                            <option value="13:30:00">13:30</option>
+                            <option value="14:00:00">14:00</option>
+                            <option value="14:30:00">14:30</option>
+                            <option value="15:00:00">15:00</option>
+                            <option value="15:30:00">15:30</option>
+                            <option value="16:00:00">16:00</option>
+                            <option value="16:30:00">16:30</option>
+                            <option value="17:00:00">17:00</option>
+                            <option value="17:30:00">17:30</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="">
+                        <label>Услуга <span>*</span></label>
+                        <select name="serId" id="serId" required style="width: 100%; margin-bottom: 15px;"
+                                class="form-control">
+                            <option name="serId" th:each="service : ${list}" th:value="${service.id}"
+                                    th:text="${service}"></option>
+                        </select>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="col-md-5">
+                        <button class="button btn-xs" id="submit">Бронировать</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="~{commons :: footer}"></div>
+</body>
+
+</html>

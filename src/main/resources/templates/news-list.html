@@ -1,0 +1,67 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Новости</title>
+    <div th:replace="~{commons :: head}"></div>
+    <style type="text/css">
+        .menu-wrap {
+            top: 0;
+        }
+        .item{
+            border: 1px solid black;
+            margin: 10px;
+        }
+        .item img{
+            width: 300px;
+        }
+        .news-items{
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+
+<div th:replace="~{commons :: nav}"></div>
+
+<section class="news" id="news">
+    <div class="container">
+        <div class="page_header page_header2 text-center">
+            <h2>Новости</h2>
+        </div>
+        <div class="row mainContainer newsBetween">
+            <div class="col-md-12">
+                <a class="ml-5 myButton float-right" href="/news/edit"
+                   th:if="${#request.userPrincipal != null && #request.isUserInRole('ROLE_ADMIN')}">Добавить запись</a>
+                <div class="news-items" th:fragment="news-items">
+                    <div class="item item-default" th:each="entity : ${list}">
+                        <div class="item-heading">
+                            <h3 class="item-title">
+                                <a th:href="'/news/get/'+${entity.id}" th:text="${entity.name}">Название записи</a><br>
+                                <small class="item-date" th:text="${entity.dates}">02/15/2015 - 16:17</small>
+                            </h3>
+                        </div>
+                        <div class="item-body">
+                            <img th:src="${entity.image}">
+                                <div class="pagination-item item-moreDetail d-flex justify-content-end">
+
+                                    <a th:href="'/news/edit/'+${entity.id}"
+                                       th:if="${#request.userPrincipal != null && #request.isUserInRole('ROLE_ADMIN')}">Редактировать</a>
+                                    <a th:href="'/news/delete/'+${entity.id}"
+                                       th:if="${#request.userPrincipal != null && #request.isUserInRole('ROLE_ADMIN')}">Удалить</a>
+                                    <a th:href="'/news/get/'+${entity.id}">Подробнее</a>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div th:replace="~{commons :: footer}"></div>
+</body>
+
+</html>

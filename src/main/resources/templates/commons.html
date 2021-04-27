@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta th:fragment="head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/js/isotope/isotope.css">
+    <link rel="stylesheet" href="/js/flexslider/flexslider.css">
+    <link rel="stylesheet" href="/js/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="/js/owl-carousel/owl.theme.css">
+    <link rel="stylesheet" href="/js/owl-carousel/owl.transitions.css">
+    <link rel="stylesheet" href="/js/superfish/css/megafish.css" media="screen">
+    <link rel="stylesheet" href="/js/superfish/css/superfish.css" media="screen">
+    <link rel="stylesheet" href="/js/pikaday/pikaday.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/light.css">
+    <link rel="stylesheet" href="/css/responsive.css">
+    </meta>
+</head>
+
+<body>
+
+<header class="header" th:fragment="nav" id="header2">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-xs-5 logo">
+                <a href="/"><img src="/img/logo-dark.png" class="img-responsive" alt=""/></a>
+            </div>
+            <div class="col-md-9 col-xs-7">
+                <div class="top-bar">
+                    <ul>
+                        <li class="tb-info">
+                            <a data-dialog1="somedialog1" class="trigger">
+                                <i class="fa fa-clock-o"></i>
+                                <span class="hidden-xs">8:00-18:00<br><em>Каждый день недели</em></span>
+                                <span class="visible-xs hidden-sm hidden-md hidden-lg">8:00-18:00</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/order/bookNow" class="trigger button btn-xs color"
+                               th:if="${#request.userPrincipal != null && #request.isUserInRole('ROLE_USER')}">Бронь
+                                онлайн</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="menu-wrap">
+            <div id="mobnav-btn">Меню <i class="fa fa-bars"></i></div>
+            <ul class="sf-menu">
+                <li>
+                    <a href="/">Главная</a>
+                </li>
+                <li>
+                    <a href="/service" th:if="${#request.userPrincipal != null && #request.isUserInRole('ROLE_ADMIN')}">Услуги</a>
+                </li>
+                <li>
+                    <a href="/category" th:if="${#request.userPrincipal == null || #request.isUserInRole('ROLE_USER')}">Услуги</a>
+                </li>
+                <li>
+                    <a href="/about" th:if="${#request.userPrincipal == null || #request.isUserInRole('ROLE_USER')}">О нас</a>
+                </li>
+                <li>
+                    <a href="/contact" th:if="${#request.userPrincipal == null || #request.isUserInRole('ROLE_USER')}">Контакты</a>
+                </li>
+                <li>
+                    <a href="/news">Новости</a>
+                </li>
+                <li th:if="${#request.userPrincipal == null}">
+                    <a href="/login">Вход и Регистрация</a>
+                </li>
+                <li>
+                    <a href="/user/history"
+                       th:if="${#request.userPrincipal != null && #request.isUserInRole('ROLE_USER')}">История</a>
+                </li>
+                <li>
+                    <a href="/user" th:if="${#request.userPrincipal != null && #request.isUserInRole('ROLE_ADMIN')}">Пользователи</a>
+                </li>
+                <li>
+                    <a href="/order" th:if="${#request.userPrincipal != null && #request.isUserInRole('ROLE_ADMIN')}">Заявки</a>
+                </li>
+                <li th:if="${#request.userPrincipal != null}">
+                    <a href="/logout">Выход</a>
+                </li>
+            </ul>
+            <div class="header-xtra">
+            </div>
+        </div>
+    </div>
+</header>
+
+<footer id="footer2" th:fragment="footer">
+    <div class="footer-bottom container">
+        <div class="row">
+            <div class="col-md-6">
+                <p>&copy; Copyright 2021. Барбершоп CHIK-CHIK</p>
+            </div>
+            <div class="col-md-6">
+            </div>
+        </div>
+    </div>
+</footer>
+
+<div id="richTextEditor" class="richTextEditor" th:fragment="richTextEditor">
+    <script type="text/javascript">
+        tinymce.init({
+            selector: '#mytextarea'
+        });
+    </script>
+    <textarea id="editor" name="text" th:utext="${entity.text}">
+	      Hello, World!
+    	</textarea>
+    <input type="submit" value="Сохранить" class="myButton">
+    <script>
+        tinymce
+            .init({
+                selector: '#editor',
+                plugins: 'image code',
+                toolbar: 'undo redo | link image | code',
+                image_title: true,
+                automatic_uploads: true,
+                tinycomments_author: 'Yauhescha',
+                file_picker_types: 'image',
+                file_picker_callback: function (cb, value, meta) {
+                    var input = document.createElement('input');
+                    input.setAttribute('type', 'file');
+                    input.setAttribute('accept', 'image/*');
+
+                    input.onchange = function () {
+                        var file = this.files[0];
+
+                        var reader = new FileReader();
+                        reader.onload = function () {
+                            var id = 'blobid' + (new Date()).getTime();
+                            var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                            var base64 = reader.result.split(',')[1];
+                            var blobInfo = blobCache.create(id, file,
+                                base64);
+                            blobCache.add(blobInfo);
+
+                            cb(blobInfo.blobUri(), {
+                                title: file.name
+                            });
+                        };
+                        reader.readAsDataURL(file);
+                    };
+
+                    input.click();
+                },
+                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+            });
+    </script>
+</div>
+
+<div id="js" th:fragment="js">
+    <!-- Javascript -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/navigation/jquery.easing.js"></script>
+    <script src="/js/flexslider/jquery.flexslider.js"></script>
+    <script src="/js/navigation/scroll.js"></script>
+    <script src="/js/navigation/jquery.sticky.js"></script>
+    <script src="/js/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/js/isotope/isotope.pkgd.js"></script>
+    <script src="/js/superfish/js/hoverIntent.js"></script>
+    <script src="/js/superfish/js/superfish.js"></script>
+    <script src="/js/tweecool.js"></script>
+    <script src="/js/jquery.bpopup.js"></script>
+    <script src="/js/pikaday/pikaday.js"></script>
+    <script src="/js/dialogFx.js"></script>
+    <script src="/js/dialog-js.js"></script>
+    <script src="/js/classie.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+    <script src="/js/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+    <script src="/js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="/js/jquery.prettyphoto.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/booking.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="/js/gmap.js"></script>
+    <script src="/js/gmap2.js"></script>
+</div>
+
+</body>
+
+</html>

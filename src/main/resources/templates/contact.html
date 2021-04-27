@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<!-- Meta -->
+	<title>Контакты</title>
+	<div th:replace="~{commons :: head}"></div>
+
+
+</head>
+<body class="multi-page">
+
+<div id="wrapper" class="wrapper">
+
+	<!-- HEADER -->
+	<div th:replace="~{commons :: nav}"></div>
+	
+	<div class="close-btn fa fa-times"></div>
+	
+	<!-- INNER CONTENT -->
+	<section id="content">
+		<div class="content-blog">
+			<div class="container">
+				<div class="row" style="justify-content: center; display: flex;">					
+					<div class="col-md-8 mx-auto">
+						<h3 class="no-margin">Контактная информация</h3>
+						<div class="space20"></div>
+						<ul class="contact-info">
+							<li>
+								<p><strong><i class="fa fa-map-marker"></i> Адрес:</strong> <span>Улица Пушкина, Дом колотушкина</span></p>
+							</li>
+							<li>
+								<p><strong><i class="fa fa-envelope"></i> Написать нам:</strong> <span><a href="#">Support@website.com</a></span></p>
+							</li>
+							<li>
+								<p><strong><i class="fa fa-phone"></i> Телефон:</strong> <span>+12 3456 7890 0987</span></p>
+							</li>
+							<li>
+								<p><strong><i class="fa fa-print"></i> Факс:</strong> <span>+12 3456 7890</span></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="clearfix space70"></div>
+	<!-- FOOTER -->
+	 <div th:replace="~{commons :: footer}"></div>
+	
+	<!-- FOOTER -->
+</div>
+
+
+<div th:replace="~{commons :: js}"></div>
+
+</body>
+</html>

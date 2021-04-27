@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>О нас</title>
+
+    <div th:replace="~{commons :: head}"></div>
+</head>
+<body class="multi-page">
+
+<div id="wrapper" class="wrapper">
+	<div th:replace="~{commons :: nav}"></div>
+	
+	<div class="close-btn fa fa-times"></div>
+
+	<!-- INNER CONTENT -->
+	<section id="content">
+		<div class="page_header page_header2 text-center">
+			<h2>О нас</h2>
+			<p>Мы являемся лучшим салоном красоты</p>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6">
+					<img src="/img/1.jpg" class="img-responsive" alt=""/>
+				</div>
+				<div class="col-md-6 about-info">
+					<h2>История барбершопа</h2>
+					<p>История - это очень важный момент в рассказе о чем либо, который является нераздельным элементом повествования. Но не будем о нем, лучше расскажем пару занимательных фактов
+					</p>
+					<div class="panel-group" id="accordion-e1">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-e1" href="#collapseOne">
+										Интересные факты о бороде
+									<span class="fa fa-angle-down"></span>
+									</a>
+								</h4>
+							</div>
+							<div id="collapseOne" class="panel-collapse collapse in">
+								<div class="panel-body">
+									<div class="row">
+										<p>
+										У блондинов борода растет быстрее, чем у брюнетов
+										
+										Рост бороды в среднем составляет 140 мм в год
+										
+										Борода состоит из 7-15 тысяч волосков. А растет она со скоростью 14 сантиметров в год.
+										
+										Бородатым зимой легче переносить холод, а летом у них, как выяснено, не перегревается мозг
+										
+										Рост бороды неравномерный в течение года. Интересно, что более интенсивно он происходит осенью и в начале зимы, то есть именно тогда, когда у меховых животных увеличивается, в связи с наступающими холодами, меховой покров. 
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-e1" href="#collapseTwo">
+										Почему мужчинам надо посещать барбера?
+									<span class="fa fa-angle-right"></span>
+									</a>
+								</h4>
+							</div>
+							<div id="collapseTwo" class="panel-collapse collapse">
+								<div class="panel-body">
+									<p>
+										1. Барбер наверняка знает, как стричь мужские волосы (бороду в том числе). Мужчине нужна хорошая стрижка и профи, который с этим справляется круче всех. А кто может лучше всех в этом разбираться? Тот, кто только этим и занимается))) Барбер!!
+										2. Барбер – отличный собеседник для разговоров. Барберы – это интересные ребята, у которых в запасе много интересных историй. В барбершопе вы можете говорить обо всем. Машины, политика, война, женщины и т. д. И в дискуссии участвуют все! И клиенты, и барбер.
+										3. Барбершоп – это место, где вас отлично побреют, постригут и приведут в порядок бороду и усы. Во многих барбершопах до сих пор используют опасные бритвы. И вы не жили по-настоящему, если вас не брили опасной бритвой! Это круто!
+										4. Если вы отец и не знаете, куда сходить с сыном вдвоем, то поход к барберу – то, что нужно! Мужчинам нужны традиции.
+										5. Вы почувствуете себя мужественнее. Это сложно описать, но легко почувствовать. Запахи мужских косметических средств плюс атмосфера делают свое дело. Культура изменяется вокруг нас с бешеной скоростью, а барбершоп – это своеобразный остров, укрытый от бури.									
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion-e1" href="#collapseThree">
+										Что такое барбершоп
+									<span class="fa fa-angle-right"></span>
+									</a>
+								</h4>
+							</div>
+							<div id="collapseThree" class="panel-collapse collapse">
+								<div class="panel-body">
+									<p>
+										Барбершоп – необычное для российского уха слово, но оно уверенно входит в повседневный лексикон многих мужчин. Фактически это мужская парикмахерская, где создают исключительно стильные и эффектные стрижки, а также проводят уход за усами и бородами. Женщинам, как говорится, здесь «табу».
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<div class="clearfix space70"></div>
+	<!-- FOOTER -->
+	 <div th:replace="~{commons :: footer}"></div>
+	
+	<!-- FOOTER -->
+</div>
+
+
+<div th:replace="~{commons :: js}"></div>
+
+</body>
+</html>

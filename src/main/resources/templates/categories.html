@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8">
+	<title>Салон красоты</title>
+    <div th:replace="~{commons :: head}"></div>
+
+</head>
+<body class="multi-page">
+
+<div id="wrapper" class="wrapper">
+	<!-- HEADER -->
+	
+    <div th:replace="~{commons :: nav}"></div>
+	
+	
+	<!-- INNER CONTENT -->
+	<section id="content">
+		<div class="page_header page_header2 text-center">
+			<h2>Наши услуги</h2>
+			<p>Для удобства разбиты по категориями</p>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2">
+					<div class="accordion">
+						<div class="panel-group" id="accordion-e1" >
+							<div class="panel panel-default" th:each="entity:${list}">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a class="accordion-toggle" data-toggle="collapse" th:data-parent="'#accordion-e1'+${entity.id}" th:href="'#collapseOne'+${entity.id}" th:text=${entity.name}>
+										Lorem ipsum dolor sit amet consectetur adipiscing elit
+										<span class="fa fa-angle-down"></span>
+										</a>
+									</h4>
+								</div>
+								<div th:id="'collapseOne'+${entity.id}" class="panel-collapse collapse in">
+									<div class="panel-body">
+										<div class="row">
+<!-- 											<p th:text="${entity.services}"></p> -->
+											<div th:each="m:${entity.services}">
+												<p th:text="${m}"></p>
+												<p th:text="${m.description}"></p>
+												<br>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!-- FOOTER -->
+
+	<!-- FOOTER -->
+</div>
+    <div th:replace="~{commons :: footer}"></div>
+
+<div th:replace="~{commons :: js}"></div>
+
+</body>
+</html>
